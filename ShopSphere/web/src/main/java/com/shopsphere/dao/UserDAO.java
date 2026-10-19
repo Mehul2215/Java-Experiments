@@ -10,11 +10,16 @@ import java.util.List;
 public class UserDAO {
 
     public User authenticate(String email, String hashedPassword) {
-        String sql = "SELECT * FROM users WHERE email = ? AND password = ? AND status = 'ACTIVE'";
+        return authenticate(email, hashedPassword, hashedPassword);
+    }
+
+    public User authenticate(String email, String plainPassword, String hashedPassword) {
+        String sql = "SELECT * FROM users WHERE email = ? AND (password = ? OR password = ?) AND status = 'ACTIVE'";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, email);
             ps.setString(2, hashedPassword);
+            ps.setString(3, plainPassword);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     return mapUser(rs);
@@ -152,3 +157,4 @@ public class UserDAO {
         );
     }
 }
+

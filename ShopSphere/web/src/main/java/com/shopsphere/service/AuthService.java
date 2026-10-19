@@ -21,7 +21,7 @@ public class AuthService {
             return null;
         }
         String hashedPassword = DBConnection.hashPassword(plainPassword);
-        return userDAO.authenticate(email.trim().toLowerCase(), hashedPassword);
+        return userDAO.authenticate(email.trim().toLowerCase(), plainPassword, hashedPassword);
     }
 
     public boolean register(String name, String email, String plainPassword, String mobile) {
@@ -47,3 +47,4 @@ public class AuthService {
         return userDAO.findById(userId);
     }
 }
+

@@ -31,7 +31,7 @@
             <!-- 1. JSTL Core Demonstration -->
             <h5 class="fw-bold mb-3 text-primary"><i class="bi bi-code-square me-2"></i>1. JSTL Core Tags (c:set, c:if, c:choose, c:forEach)</h5>
             
-            <c:set var="cartTotal" value="3500.00"/>
+            <c:set var="cartTotal" value="${3500.00}"/>
             <c:set var="userRole" value="STUDENT_DEMO"/>
             <c:set var="demoItems" value="Electronics,Fashion,Home Essentials,Robotics,AI Hardware"/>
 
